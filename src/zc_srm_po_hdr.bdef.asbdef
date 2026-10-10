@@ -1,0 +1,29 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for zc_srm_po_hdr alias PurchaseOrder
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use association _Items { create; with draft; }
+}
+
+define behavior for zc_srm_po_itm alias PurchaseOrderItem
+use etag
+{
+  use update;
+  use delete;
+
+  use association _PurchaseOrder { with draft; }
+}

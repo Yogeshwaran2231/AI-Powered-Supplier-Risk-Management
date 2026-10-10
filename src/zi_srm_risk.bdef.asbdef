@@ -1,0 +1,86 @@
+managed implementation in class zbp_i_srm_risk unique;
+strict ( 2 );
+with draft;
+define behavior for zi_srm_risk  alias Risk
+persistent table zsrm_risk
+draft table zsrm_risk_d
+lock master
+total etag LastChangedAt
+etag master LocalLastChangedAt
+authorization master ( none )
+
+{
+  create;
+  update;
+  delete;
+   field ( readonly : update )
+    RiskId;
+
+  field ( readonly )
+    SupplierRiskScore,
+    DeliveryRiskScore,
+    FinancialRiskScore,
+    DisruptionRiskScore,
+    OverallRiskScore,
+    RiskLevel,
+    RiskReason,
+    AIInsight,
+    RecommendedAction,
+    AlertStatus,
+    RiskStatus,
+    LocalCreatedBy,
+    LocalCreatedAt,
+    LocalLastChangedBy,
+    LocalLastChangedAt,
+    LastChangedAt;
+
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+
+
+draft determine action Prepare { }
+
+  determination calculateRiskAnalysis on modify
+  {
+    create;
+    field VendorId,
+          PoId,
+          InvoiceId,
+          DisruptionId;
+  }
+
+
+mapping for ZSRM_RISK
+  {
+    RiskId = risk_id;
+    VendorId = vendor_id;
+    PoId = po_id;
+    InvoiceId = invoice_id;
+    DisruptionId = disruption_id;
+    RiskType = risk_type;
+    RiskTitle = risk_title;
+    SupplierRiskScore = supplier_risk_score;
+    DeliveryRiskScore = delivery_risk_score;
+    FinancialRiskScore = financial_risk_score;
+    DisruptionRiskScore = disruption_risk_score;
+    OverallRiskScore = overall_risk_score;
+    RiskLevel = risk_level;
+    RiskReason = risk_reason;
+    AIInsight = ai_insight;
+    RecommendedAction = recommended_action;
+    AlertStatus = alert_status;
+    RiskStatus = risk_status;
+    ReviewStatus = review_status;
+    ReviewComment = review_comment;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+
+
+
+  }
+}

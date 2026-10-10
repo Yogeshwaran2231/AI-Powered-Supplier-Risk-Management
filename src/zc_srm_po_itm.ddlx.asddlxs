@@ -1,0 +1,307 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo: {
+  typeName: 'Purchase Order Item',
+  typeNamePlural: 'Purchase Order Items',
+  title: {
+    type: #STANDARD,
+    value: 'ItemNo'
+  },
+  description: {
+    type: #STANDARD,
+    value: 'MaterialDesc'
+  }
+}
+annotate entity zc_srm_po_itm
+    with 
+{
+ @UI.facet: [
+    {
+      id: 'ItemDetails',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Purchase Order Item Details',
+      position: 10
+    },
+    {
+      id: 'ItemAmounts',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Calculated Amounts',
+      position: 20,
+      targetQualifier: 'ItemAmounts'
+    }
+  ]
+
+  @UI: {
+    lineItem: [
+      {
+        position: 10,
+        importance: #HIGH,
+        label: 'PO ID'
+      }
+    ],
+    identification: [
+      {
+        position: 10,
+        label: 'PO ID'
+      }
+    ]
+  }
+  PoId;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 20,
+        importance: #HIGH,
+        label: 'Item No.'
+      }
+    ],
+    identification: [
+      {
+        position: 20,
+        label: 'Item No.'
+      }
+    ]
+  }
+  ItemNo;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 30,
+        importance: #HIGH,
+        label: 'Material ID'
+      }
+    ],
+    identification: [
+      {
+        position: 30,
+        label: 'Material ID'
+      }
+    ]
+  }
+  MaterialId;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 40,
+        importance: #HIGH,
+        label: 'Material Description'
+      }
+    ],
+    identification: [
+      {
+        position: 40,
+        label: 'Material Description'
+      }
+    ]
+  }
+  MaterialDesc;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 50,
+        importance: #MEDIUM,
+        label: 'Unit'
+      }
+    ],
+    identification: [
+      {
+        position: 50,
+        label: 'Unit'
+      }
+    ]
+  }
+  Unit;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 60,
+        importance: #HIGH,
+        label: 'Quantity'
+      }
+    ],
+    identification: [
+      {
+        position: 60,
+        label: 'Quantity'
+      }
+    ]
+  }
+  Quantity;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 70,
+        importance: #MEDIUM,
+        label: 'Currency'
+      }
+    ],
+    identification: [
+      {
+        position: 70,
+        label: 'Currency'
+      }
+    ]
+  }
+  CurrencyCode;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 80,
+        importance: #HIGH,
+        label: 'Unit Price'
+      }
+    ],
+    identification: [
+      {
+        position: 80,
+        label: 'Unit Price'
+      }
+    ]
+  }
+  UnitPrice;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 90,
+        importance: #HIGH,
+        label: 'Net Amount'
+      }
+    ],
+    identification: [
+      {
+        position: 90,
+        label: 'Net Amount'
+      }
+    ],
+    fieldGroup: [
+      {
+        qualifier: 'ItemAmounts',
+        position: 10
+      }
+    ]
+  }
+  NetAmount;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 100,
+        importance: #MEDIUM,
+        label: 'Tax Rate'
+      }
+    ],
+    identification: [
+      {
+        position: 100,
+        label: 'Tax Rate'
+      }
+    ]
+  }
+  TaxRate;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 110,
+        importance: #HIGH,
+        label: 'Tax Amount'
+      }
+    ],
+    identification: [
+      {
+        position: 110,
+        label: 'Tax Amount'
+      }
+    ],
+    fieldGroup: [
+      {
+        qualifier: 'ItemAmounts',
+        position: 20
+      }
+    ]
+  }
+  TaxAmount;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 120,
+        importance: #HIGH,
+        label: 'Item Total Amount'
+      }
+    ],
+    identification: [
+      {
+        position: 120,
+        label: 'Item Total Amount'
+      }
+    ],
+    fieldGroup: [
+      {
+        qualifier: 'ItemAmounts',
+        position: 30
+      }
+    ]
+  }
+  ItemTotalAmount;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 130,
+        importance: #MEDIUM,
+        label: 'Delivered Quantity'
+      }
+    ],
+    identification: [
+      {
+        position: 130,
+        label: 'Delivered Quantity'
+      }
+    ]
+  }
+  DeliveredQty;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 140,
+        importance: #MEDIUM,
+        label: 'Item Status'
+      }
+    ],
+    identification: [
+      {
+        position: 140,
+        label: 'Item Status'
+      }
+    ]
+  }
+  ItemStatus;
+
+  @UI.hidden: true
+  LocalCreatedBy;
+
+  @UI.hidden: true
+  LocalCreatedAt;
+
+  @UI.hidden: true
+  LocalLastChangedBy;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+  @UI.hidden: true
+  LastChangedAt;
+    
+}

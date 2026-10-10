@@ -1,0 +1,5 @@
+CLASS zbp_i_srm_disruption DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_srm_disruption.
+ENDCLASS.
+
+CLASS zbp_i_srm_disruption IMPLEMENTATION.
+ENDCLASS.

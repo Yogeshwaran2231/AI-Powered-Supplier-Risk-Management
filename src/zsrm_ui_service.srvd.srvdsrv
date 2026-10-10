@@ -1,0 +1,9 @@
+@EndUserText.label: 'SRM UI Service'
+define service ZSRM_UI_SERVICE {
+  expose zc_srm_vendor     as Suppliers;
+  expose zc_srm_po_hdr     as PurchaseOrders;
+  expose zc_srm_po_itm     as PurchaseOrderItems;
+  expose zc_srm_invoice    as Invoices;
+  expose zc_srm_disruption as Disruptions;
+  expose zc_srm_risk       as Risks;
+}

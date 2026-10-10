@@ -1,0 +1,230 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo: {
+  typeName: 'Invoice',
+  typeNamePlural: 'Invoices',
+  title: {
+    type: #STANDARD,
+    value: 'InvoiceId'
+  },
+  description: {
+    type: #STANDARD,
+    value: 'MatchStatus'
+  }
+}
+
+@UI.presentationVariant: [{
+  sortOrder: [{
+    by: 'InvoiceDate',
+    direction: #DESC
+  }],
+  visualizations: [{
+    type: #AS_LINEITEM
+  }]
+}]
+annotate entity zc_srm_invoice
+    with 
+{
+ @UI.facet: [
+    {
+      id: 'InvoiceDetails',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Invoice Details',
+      position: 10
+    },
+    {
+      id: 'InvoiceAmounts',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Invoice Amounts & Variance',
+      position: 20,
+      targetQualifier: 'InvoiceAmounts'
+    },
+    {
+      id: 'InvoiceStatusInfo',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Matching & Status',
+      position: 30,
+      targetQualifier: 'InvoiceStatusInfo'
+    }
+  ]
+
+  @UI: {
+    lineItem: [
+      { position: 10, importance: #HIGH, label: 'Invoice ID' }
+    ],
+    identification: [
+      { position: 10, label: 'Invoice ID' }
+    ],
+    selectionField: [
+      { position: 10 }
+    ]
+  }
+  InvoiceId;
+
+  @UI: {
+    lineItem: [
+      { position: 20, importance: #HIGH, label: 'PO ID' }
+    ],
+    identification: [
+      { position: 20, label: 'PO ID' }
+    ],
+    selectionField: [
+      { position: 20 }
+    ]
+  }
+  PoId;
+
+  @UI: {
+    lineItem: [
+      { position: 30, importance: #HIGH, label: 'Vendor ID' }
+    ],
+    identification: [
+      { position: 30, label: 'Vendor ID' }
+    ],
+    selectionField: [
+      { position: 30 }
+    ]
+  }
+  VendorId;
+
+  @UI: {
+    lineItem: [
+      { position: 40, importance: #HIGH, label: 'Invoice Date' }
+    ],
+    identification: [
+      { position: 40, label: 'Invoice Date' }
+    ],
+    selectionField: [
+      { position: 40 }
+    ]
+  }
+  InvoiceDate;
+
+  @UI: {
+    lineItem: [
+      { position: 50, importance: #HIGH, label: 'Due Date' }
+    ],
+    identification: [
+      { position: 50, label: 'Due Date' }
+    ]
+  }
+  DueDate;
+
+  @UI: {
+    lineItem: [
+      { position: 60, importance: #MEDIUM, label: 'Currency' }
+    ],
+    identification: [
+      { position: 60, label: 'Currency' }
+    ]
+  }
+  CurrencyCode;
+
+  @UI: {
+    lineItem: [
+      { position: 70, importance: #HIGH, label: 'Invoice Net Amount' }
+    ],
+    fieldGroup: [
+      { qualifier: 'InvoiceAmounts', position: 10, label: 'Invoice Net Amount' }
+    ]
+  }
+  InvoiceNetAmount;
+
+  @UI: {
+    lineItem: [
+      { position: 80, importance: #MEDIUM, label: 'Invoice Tax Amount' }
+    ],
+    fieldGroup: [
+      { qualifier: 'InvoiceAmounts', position: 20, label: 'Invoice Tax Amount' }
+    ]
+  }
+  InvoiceTaxAmount;
+
+  @UI: {
+    lineItem: [
+      { position: 90, importance: #HIGH, label: 'Invoice Total Amount' }
+    ],
+    fieldGroup: [
+      { qualifier: 'InvoiceAmounts', position: 30, label: 'Invoice Total Amount' }
+    ]
+  }
+  InvoiceTotalAmount;
+
+  @UI: {
+    lineItem: [
+      { position: 100, importance: #HIGH, label: 'PO Total Amount' }
+    ],
+    fieldGroup: [
+      { qualifier: 'InvoiceAmounts', position: 40, label: 'PO Total Amount' }
+    ]
+  }
+  PoTotalAmount;
+
+  @UI: {
+    lineItem: [
+      { position: 110, importance: #HIGH, label: 'Amount Variance' }
+    ],
+    fieldGroup: [
+      { qualifier: 'InvoiceAmounts', position: 50, label: 'Amount Variance' }
+    ]
+  }
+  AmountVariance;
+
+  @UI: {
+    lineItem: [
+      { position: 120, importance: #HIGH, label: 'Match Status' }
+    ],
+    fieldGroup: [
+      { qualifier: 'InvoiceStatusInfo', position: 10, label: 'Match Status' }
+    ],
+    selectionField: [
+      { position: 50 }
+    ]
+  }
+  MatchStatus;
+
+  @UI: {
+    lineItem: [
+      { position: 130, importance: #HIGH, label: 'Invoice Status' }
+    ],
+    fieldGroup: [
+      { qualifier: 'InvoiceStatusInfo', position: 20, label: 'Invoice Status' }
+    ],
+    selectionField: [
+      { position: 60 }
+    ]
+  }
+  InvoiceStatus;
+
+  @UI: {
+    lineItem: [
+      { position: 140, importance: #HIGH, label: 'Payment Status' }
+    ],
+    fieldGroup: [
+      { qualifier: 'InvoiceStatusInfo', position: 30, label: 'Payment Status' }
+    ],
+    selectionField: [
+      { position: 70 }
+    ]
+  }
+  PaymentStatus;
+
+  @UI.hidden: true
+  LocalCreatedBy;
+
+  @UI.hidden: true
+  LocalCreatedAt;
+
+  @UI.hidden: true
+  LocalLastChangedBy;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+  @UI.hidden: true
+  LastChangedAt;
+    
+}

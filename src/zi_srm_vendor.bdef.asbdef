@@ -1,0 +1,61 @@
+managed implementation in class zbp_i_srm_vendor unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_SRM_VENDOR alias Vendor
+persistent table zsrm_vendor
+draft table zsrm_vendor_d
+lock master
+total etag LastChangedAt
+etag master LocalLastChangedAt
+authorization master ( none )
+{
+  create;
+  update;
+  delete;
+   field ( readonly : update )
+    VendorId;
+
+  field ( readonly )
+    LocalCreatedBy,
+    LocalCreatedAt,
+    LocalLastChangedBy,
+    LocalLastChangedAt,
+    LastChangedAt;
+
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+
+  draft determine action Prepare
+  {
+  }
+
+  mapping for ZSRM_VENDOR
+  {
+    VendorId            = vendor_id;
+    VendorName          = vendor_name;
+    VendorCategory      = vendor_category;
+    ContactPerson       = contact_person;
+    Email               = email;
+    Phone               = phone;
+    Address             = address;
+    City                = city;
+    State               = state;
+    PostalCode          = postal_code;
+    Country             = country;
+    TaxNumber           = tax_number;
+    BankAccount         = bank_account;
+    PaymentTerms        = payment_terms;
+    LeadTimeDays        = lead_time_days;
+    SupplierCriticality = supplier_criticality;
+    VendorStatus        = vendor_status;
+
+    LocalCreatedBy      = local_created_by;
+    LocalCreatedAt      = local_created_at;
+    LocalLastChangedBy  = local_last_changed_by;
+    LocalLastChangedAt  = local_last_changed_at;
+    LastChangedAt       = last_changed_at;
+  }
+}

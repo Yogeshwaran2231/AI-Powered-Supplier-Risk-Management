@@ -1,0 +1,256 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo: {
+  typeName: 'Disruption',
+  typeNamePlural: 'Disruptions',
+  title: {
+    type: #STANDARD,
+    value: 'DisruptionTitle'
+  },
+  description: {
+    type: #STANDARD,
+    value: 'DisruptionId'
+  }
+}
+
+@UI.presentationVariant: [{
+  sortOrder: [{
+    by: 'StartDate',
+    direction: #DESC
+  }],
+  visualizations: [{
+    type: #AS_LINEITEM
+  }]
+}]
+
+annotate entity ZC_SRM_DISRUPTION with
+{
+  @UI.facet: [
+    {
+      id: 'DisruptionDetails',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Disruption Details',
+      position: 10
+    },
+    {
+      id: 'DisruptionTimeline',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Timeline & Impact',
+      position: 20,
+      targetQualifier: 'DisruptionTimeline'
+    },
+    {
+      id: 'DisruptionSource',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Source Information',
+      position: 30,
+      targetQualifier: 'DisruptionSource'
+    },
+    {
+      id: 'DisruptionAI',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'AI Analysis',
+      position: 40,
+      targetQualifier: 'DisruptionAI'
+    }
+  ]
+
+  @UI: {
+    lineItem: [
+      { position: 10, importance: #HIGH, label: 'Disruption ID' }
+    ],
+    identification: [
+      { position: 10, label: 'Disruption ID' }
+    ],
+    selectionField: [
+      { position: 10 }
+    ]
+  }
+  DisruptionId;
+
+  @UI: {
+    lineItem: [
+      { position: 20, importance: #HIGH, label: 'Vendor ID' }
+    ],
+    identification: [
+      { position: 20, label: 'Vendor ID' }
+    ],
+    selectionField: [
+      { position: 20 }
+    ]
+  }
+  VendorId;
+
+  @UI: {
+    lineItem: [
+      { position: 30, importance: #MEDIUM, label: 'PO ID' }
+    ],
+    identification: [
+      { position: 30, label: 'PO ID' }
+    ],
+    selectionField: [
+      { position: 30 }
+    ]
+  }
+  PoId;
+
+  @UI: {
+    lineItem: [
+      { position: 40, importance: #HIGH, label: 'Disruption Type' }
+    ],
+    identification: [
+      { position: 40, label: 'Disruption Type' }
+    ],
+    selectionField: [
+      { position: 40 }
+    ]
+  }
+  DisruptionType;
+
+  @UI: {
+    lineItem: [
+      { position: 50, importance: #HIGH, label: 'Title' }
+    ],
+    identification: [
+      { position: 50, label: 'Title' }
+    ]
+  }
+  DisruptionTitle;
+
+  @UI: {
+    identification: [
+      { position: 60, label: 'Description' }
+    ]
+  }
+  DisruptionDescription;
+
+  @UI: {
+    lineItem: [
+      { position: 60, importance: #HIGH, label: 'Severity' }
+    ],
+    identification: [
+      { position: 70, label: 'Severity' }
+    ],
+    selectionField: [
+      { position: 50 }
+    ]
+  }
+  Severity;
+
+  @UI: {
+    lineItem: [
+      { position: 70, importance: #MEDIUM, label: 'Impact Area' }
+    ],
+    identification: [
+      { position: 80, label: 'Impact Area' }
+    ],
+    selectionField: [
+      { position: 60 }
+    ]
+  }
+  ImpactArea;
+
+  @UI: {
+    lineItem: [
+      { position: 80, importance: #HIGH, label: 'Start Date' }
+    ],
+    identification: [
+      { position: 90, label: 'Start Date' }
+    ],
+    fieldGroup: [
+      { qualifier: 'DisruptionTimeline', position: 10 }
+    ]
+  }
+  StartDate;
+
+  @UI: {
+    lineItem: [
+      { position: 90, importance: #MEDIUM, label: 'End Date' }
+    ],
+    identification: [
+      { position: 100, label: 'End Date' }
+    ],
+    fieldGroup: [
+      { qualifier: 'DisruptionTimeline', position: 20 }
+    ]
+  }
+  EndDate;
+
+  @UI: {
+    lineItem: [
+      { position: 100, importance: #HIGH, label: 'Impacted Days' }
+    ],
+    identification: [
+      { position: 110, label: 'Impacted Days' }
+    ],
+    fieldGroup: [
+      { qualifier: 'DisruptionTimeline', position: 30 }
+    ]
+  }
+  ImpactedDays;
+
+  @UI: {
+    lineItem: [
+      { position: 110, importance: #MEDIUM, label: 'Source Type' }
+    ],
+    identification: [
+      { position: 120, label: 'Source Type' }
+    ],
+    fieldGroup: [
+      { qualifier: 'DisruptionSource', position: 10 }
+    ]
+  }
+  SourceType;
+
+  @UI: {
+    identification: [
+      { position: 130, label: 'Source Reference' }
+    ],
+    fieldGroup: [
+      { qualifier: 'DisruptionSource', position: 20 }
+    ]
+  }
+  SourceReference;
+
+  @UI: {
+    identification: [
+      { position: 140, label: 'AI Analysis' }
+    ],
+    fieldGroup: [
+      { qualifier: 'DisruptionAI', position: 10 }
+    ]
+  }
+  AIAnalysis;
+
+  @UI: {
+    lineItem: [
+      { position: 120, importance: #HIGH, label: 'Event Status' }
+    ],
+    identification: [
+      { position: 150, label: 'Event Status' }
+    ],
+    selectionField: [
+      { position: 70 }
+    ]
+  }
+  EventStatus;
+
+  @UI.hidden: true
+  LocalCreatedBy;
+
+  @UI.hidden: true
+  LocalCreatedAt;
+
+  @UI.hidden: true
+  LocalLastChangedBy;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+  @UI.hidden: true
+  LastChangedAt;
+}

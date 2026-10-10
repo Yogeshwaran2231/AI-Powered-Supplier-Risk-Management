@@ -1,0 +1,138 @@
+managed implementation in class zbp_i_srm_po_hdr unique;
+strict ( 2 );
+with draft;
+define behavior for zi_srm_po_hdr alias PurchaseOrder
+persistent table zsrm_po_hdr
+draft table zsrm_po_hdr_d
+lock master
+total etag LastChangedAt
+etag master LocalLastChangedAt
+authorization master ( none )
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly : update )
+    PoId,
+    LocalCreatedBy,
+    LocalCreatedAt,
+    LocalLastChangedBy,
+    LocalLastChangedAt,
+    LastChangedAt;
+   association _Items { create; with draft; }
+
+    internal action recalculatePOTotals;
+
+   draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+
+  draft determine action Prepare;
+
+   mapping for zsrm_po_hdr
+  {
+    PoId                  = po_id;
+    VendorId              = vendor_id;
+    PoDate                = po_date;
+    ExpectedDeliveryDate  = expected_delivery_date;
+    ActualDeliveryDate    = actual_delivery_date;
+    CompanyCode           = company_code;
+    CurrencyCode          = currency_code;
+    PaymentTerms          = payment_terms;
+    TotalNetAmount        = total_net_amount;
+    TotalTaxAmount        = total_tax_amount;
+    TotalAmount           = total_amount;
+    DeliveryDelayDays     = delivery_delay_days;
+    PoStatus              = po_status;
+    DeliveryStatus        = delivery_status;
+    Priority              = priority;
+
+    LocalCreatedBy        = local_created_by;
+    LocalCreatedAt        = local_created_at;
+    LocalLastChangedBy    = local_last_changed_by;
+    LocalLastChangedAt    = local_last_changed_at;
+    LastChangedAt         = last_changed_at;
+  }
+}
+
+
+define behavior for zi_srm_po_itm alias PurchaseOrderItem
+persistent table zsrm_po_item
+draft table zsrm_po_item_d
+lock dependent by _PurchaseOrder
+authorization dependent by _PurchaseOrder
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  field ( readonly : update )
+    PoId,
+    ItemNo;
+
+    field ( readonly )
+    LocalCreatedBy,
+    LocalCreatedAt,
+    LocalLastChangedBy,
+    LocalLastChangedAt,
+    LastChangedAt;
+
+    determination calculateItemAmounts on modify
+{
+  create;
+  field Quantity, UnitPrice, TaxRate;
+}
+
+determination triggerPOTotal on modify
+  {
+    create;
+    field Quantity, UnitPrice, TaxRate;
+  }
+
+  association _PurchaseOrder { with draft; }
+
+  side effects
+  {
+    field Quantity affects field NetAmount,
+                         field TaxAmount,
+                         field ItemTotalAmount;
+
+    field UnitPrice affects field NetAmount,
+                         field TaxAmount,
+                         field ItemTotalAmount;
+
+    field TaxRate affects field TaxAmount,
+                       field ItemTotalAmount;
+  }
+
+  mapping for zsrm_po_item
+  {
+    PoId                = po_id;
+    ItemNo              = item_no;
+
+    MaterialId          = material_id;
+    MaterialDesc        = material_desc;
+
+    Unit                = unit;
+    Quantity            = quantity;
+
+    CurrencyCode        = currency_code;
+    UnitPrice            = unit_price;
+
+    NetAmount           = net_amount;
+
+    TaxRate             = tax_rate;
+    TaxAmount           = tax_amount;
+
+    ItemTotalAmount     = item_total_amount;
+
+    DeliveredQty        = delivered_qty;
+    ItemStatus          = item_status;
+
+    LocalCreatedBy      = local_created_by;
+    LocalCreatedAt      = local_created_at;
+    LocalLastChangedBy  = local_last_changed_by;
+    LocalLastChangedAt  = local_last_changed_at;
+    LastChangedAt       = last_changed_at;
+  }
+}

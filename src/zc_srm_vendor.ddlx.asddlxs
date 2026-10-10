@@ -1,0 +1,234 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: {
+    typeName: 'Supplier',
+    typeNamePlural: 'Suppliers',
+    title: {
+      type: #STANDARD,
+      value: 'VendorId'
+    },
+    description: {
+      type: #STANDARD,
+      value: 'VendorName'
+    }
+  },
+  presentationVariant: [{
+    sortOrder: [{
+      by: 'VendorName',
+      direction: #ASC
+    }],
+    visualizations: [{
+      type: #AS_LINEITEM
+    }]
+  }]
+}
+annotate entity zc_srm_vendor
+    with 
+{
+    
+  @UI.facet: [
+    {
+      id: 'SupplierInformation',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Supplier Information',
+      position: 10
+    }
+  ]
+
+  @UI: {
+    lineItem: [
+      { position: 10, importance: #HIGH, label: 'Vendor ID' }
+    ],
+    identification: [
+      { position: 10, label: 'Vendor ID' }
+    ],
+    selectionField: [
+      { position: 10 }
+    ]
+  }
+  VendorId;
+
+  @UI: {
+    lineItem: [
+      { position: 20, importance: #HIGH, label: 'Supplier Name' }
+    ],
+    identification: [
+      { position: 20, label: 'Supplier Name' }
+    ],
+    selectionField: [
+      { position: 20 }
+    ]
+  }
+  VendorName;
+
+  @UI: {
+    lineItem: [
+      { position: 30, importance: #MEDIUM, label: 'Supplier Category' }
+    ],
+    identification: [
+      { position: 30, label: 'Supplier Category' }
+    ],
+    selectionField: [
+      { position: 30 }
+    ]
+  }
+  VendorCategory;
+
+  @UI: {
+    lineItem: [
+      { position: 40, importance: #MEDIUM, label: 'Contact Person' }
+    ],
+    identification: [
+      { position: 40, label: 'Contact Person' }
+    ]
+  }
+  ContactPerson;
+
+  @UI: {
+    lineItem: [
+      { position: 50, importance: #MEDIUM, label: 'Email' }
+    ],
+    identification: [
+      { position: 50, label: 'Email' }
+    ]
+  }
+  Email;
+
+  @UI: {
+    lineItem: [
+      { position: 60, importance: #MEDIUM, label: 'Phone' }
+    ],
+    identification: [
+      { position: 60, label: 'Phone' }
+    ]
+  }
+  Phone;
+
+  @UI: {
+    identification: [
+      { position: 70, label: 'Address' }
+    ]
+  }
+  Address;
+
+  @UI: {
+    lineItem: [
+      { position: 70, importance: #MEDIUM, label: 'City' }
+    ],
+    identification: [
+      { position: 80, label: 'City' }
+    ],
+    selectionField: [
+      { position: 40 }
+    ]
+  }
+  City;
+
+  @UI: {
+    lineItem: [
+      { position: 80, importance: #MEDIUM, label: 'State' }
+    ],
+    identification: [
+      { position: 90, label: 'State' }
+    ]
+  }
+  State;
+
+  @UI: {
+    identification: [
+      { position: 100, label: 'Postal Code' }
+    ]
+  }
+  PostalCode;
+
+  @UI: {
+    lineItem: [
+      { position: 90, importance: #MEDIUM, label: 'Country' }
+    ],
+    identification: [
+      { position: 110, label: 'Country' }
+    ],
+    selectionField: [
+      { position: 50 }
+    ]
+  }
+  Country;
+
+  @UI: {
+    identification: [
+      { position: 120, label: 'Tax Number' }
+    ]
+  }
+  TaxNumber;
+
+  @UI: {
+    identification: [
+      { position: 130, label: 'Bank Account' }
+    ]
+  }
+  BankAccount;
+
+  @UI: {
+    lineItem: [
+      { position: 100, importance: #MEDIUM, label: 'Payment Terms' }
+    ],
+    identification: [
+      { position: 140, label: 'Payment Terms' }
+    ]
+  }
+  PaymentTerms;
+
+  @UI: {
+    lineItem: [
+      { position: 110, importance: #HIGH, label: 'Lead Time (Days)' }
+    ],
+    identification: [
+      { position: 150, label: 'Lead Time (Days)' }
+    ]
+  }
+  LeadTimeDays;
+
+  @UI: {
+    lineItem: [
+      { position: 120, importance: #HIGH, label: 'Supplier Criticality' }
+    ],
+    identification: [
+      { position: 160, label: 'Supplier Criticality' }
+    ],
+    selectionField: [
+      { position: 60 }
+    ]
+  }
+  SupplierCriticality;
+
+  @UI: {
+    lineItem: [
+      { position: 130, importance: #HIGH, label: 'Vendor Status' }
+    ],
+    identification: [
+      { position: 170, label: 'Vendor Status' }
+    ],
+    selectionField: [
+      { position: 70 }
+    ]
+  }
+  VendorStatus;
+
+  @UI.hidden: true
+  LocalCreatedBy;
+
+  @UI.hidden: true
+  LocalCreatedAt;
+
+  @UI.hidden: true
+  LocalLastChangedBy;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+  @UI.hidden: true
+  LastChangedAt;
+  }
+    

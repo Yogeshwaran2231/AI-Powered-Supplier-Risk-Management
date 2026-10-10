@@ -1,0 +1,346 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo: {
+  typeName: 'Purchase Order',
+  typeNamePlural: 'Purchase Orders',
+  title: {
+    type: #STANDARD,
+    value: 'PoId'
+  },
+  description: {
+    type: #STANDARD,
+    value: 'PoStatus'
+  }
+}
+
+@UI.presentationVariant: [{
+  sortOrder: [{
+    by: 'PoDate',
+    direction: #DESC
+  }],
+  visualizations: [{
+    type: #AS_LINEITEM
+  }]
+}]
+annotate entity zc_srm_po_hdr
+    with 
+{
+    @UI.facet: [
+    {
+      id: 'POHeader',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Purchase Order Details',
+      position: 10
+    },
+    {
+      id: 'POItems',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Purchase Order Items',
+      position: 20,
+      targetElement: '_Items'
+    }
+  ]
+
+  @UI: {
+    lineItem: [
+      {
+        position: 10,
+        importance: #HIGH,
+        label: 'PO ID'
+      }
+    ],
+    identification: [
+      {
+        position: 10,
+        label: 'PO ID'
+      }
+    ],
+    selectionField: [
+      {
+        position: 10
+      }
+    ]
+  }
+  PoId;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 20,
+        importance: #HIGH,
+        label: 'Vendor ID'
+      }
+    ],
+    identification: [
+      {
+        position: 20,
+        label: 'Vendor ID'
+      }
+    ],
+    selectionField: [
+      {
+        position: 20
+      }
+    ]
+  }
+  VendorId;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 30,
+        importance: #HIGH,
+        label: 'PO Date'
+      }
+    ],
+    identification: [
+      {
+        position: 30,
+        label: 'PO Date'
+      }
+    ],
+    selectionField: [
+      {
+        position: 30
+      }
+    ]
+  }
+  PoDate;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 40,
+        importance: #HIGH,
+        label: 'Expected Delivery'
+      }
+    ],
+    identification: [
+      {
+        position: 40,
+        label: 'Expected Delivery'
+      }
+    ]
+  }
+  ExpectedDeliveryDate;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 50,
+        importance: #HIGH,
+        label: 'Actual Delivery'
+      }
+    ],
+    identification: [
+      {
+        position: 50,
+        label: 'Actual Delivery'
+      }
+    ]
+  }
+  ActualDeliveryDate;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 60,
+        importance: #MEDIUM,
+        label: 'Company Code'
+      }
+    ],
+    identification: [
+      {
+        position: 60,
+        label: 'Company Code'
+      }
+    ]
+  }
+  CompanyCode;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 70,
+        importance: #MEDIUM,
+        label: 'Currency'
+      }
+    ],
+    identification: [
+      {
+        position: 70,
+        label: 'Currency'
+      }
+    ]
+  }
+  CurrencyCode;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 80,
+        importance: #MEDIUM,
+        label: 'Payment Terms'
+      }
+    ],
+    identification: [
+      {
+        position: 80,
+        label: 'Payment Terms'
+      }
+    ]
+  }
+  PaymentTerms;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 90,
+        importance: #HIGH,
+        label: 'Total Net Amount'
+      }
+    ],
+    identification: [
+      {
+        position: 90,
+        label: 'Total Net Amount'
+      }
+    ]
+  }
+  TotalNetAmount;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 100,
+        importance: #HIGH,
+        label: 'Total Tax Amount'
+      }
+    ],
+    identification: [
+      {
+        position: 100,
+        label: 'Total Tax Amount'
+      }
+    ]
+  }
+  TotalTaxAmount;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 110,
+        importance: #HIGH,
+        label: 'Total Amount'
+      }
+    ],
+    identification: [
+      {
+        position: 110,
+        label: 'Total Amount'
+      }
+    ]
+  }
+  TotalAmount;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 120,
+        importance: #HIGH,
+        label: 'Delivery Delay (Days)'
+      }
+    ],
+    identification: [
+      {
+        position: 120,
+        label: 'Delivery Delay (Days)'
+      }
+    ]
+  }
+  DeliveryDelayDays;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 130,
+        importance: #HIGH,
+        label: 'PO Status'
+      }
+    ],
+    identification: [
+      {
+        position: 130,
+        label: 'PO Status'
+      }
+    ],
+    selectionField: [
+      {
+        position: 40
+      }
+    ]
+  }
+  PoStatus;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 140,
+        importance: #HIGH,
+        label: 'Delivery Status'
+      }
+    ],
+    identification: [
+      {
+        position: 140,
+        label: 'Delivery Status'
+      }
+    ],
+    selectionField: [
+      {
+        position: 50
+      }
+    ]
+  }
+  DeliveryStatus;
+
+  @UI: {
+    lineItem: [
+      {
+        position: 150,
+        importance: #HIGH,
+        label: 'Priority'
+      }
+    ],
+    identification: [
+      {
+        position: 150,
+        label: 'Priority'
+      }
+    ],
+    selectionField: [
+      {
+        position: 60
+      }
+    ]
+  }
+  Priority;
+
+  @UI.hidden: true
+  LocalCreatedBy;
+
+  @UI.hidden: true
+  LocalCreatedAt;
+
+  @UI.hidden: true
+  LocalLastChangedBy;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+  @UI.hidden: true
+  LastChangedAt;
+    
+}

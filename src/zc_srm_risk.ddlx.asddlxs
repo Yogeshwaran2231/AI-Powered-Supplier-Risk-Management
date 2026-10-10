@@ -1,0 +1,309 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo: {
+  typeName: 'Risk',
+  typeNamePlural: 'Risks',
+  title: {
+    type: #STANDARD,
+    value: 'RiskTitle'
+  },
+  description: {
+    type: #STANDARD,
+    value: 'RiskLevel'
+  }
+}
+
+@UI.presentationVariant: [{
+  sortOrder: [{
+    by: 'OverallRiskScore',
+    direction: #DESC
+  }],
+  visualizations: [{
+    type: #AS_LINEITEM
+  }]
+}]
+
+annotate entity zc_srm_risk with
+{
+  @UI.facet: [
+    {
+      id: 'RiskDetails',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Risk Details',
+      position: 10
+    },
+    {
+      id: 'RiskScores',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Risk Scores',
+      position: 20,
+      targetQualifier: 'RiskScores'
+    },
+    {
+      id: 'RiskAIInsights',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'AI Insights & Recommendation',
+      position: 30,
+      targetQualifier: 'RiskAIInsights'
+    },
+    {
+      id: 'RiskReview',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Status & Review',
+      position: 40,
+      targetQualifier: 'RiskReview'
+    }
+  ]
+
+  @UI: {
+    lineItem: [
+      { position: 10, importance: #HIGH, label: 'Risk ID' }
+    ],
+    identification: [
+      { position: 10, label: 'Risk ID' }
+    ],
+    selectionField: [
+      { position: 10 }
+    ]
+  }
+  RiskId;
+
+  @UI: {
+    lineItem: [
+      { position: 20, importance: #HIGH, label: 'Vendor ID' }
+    ],
+    identification: [
+      { position: 20, label: 'Vendor ID' }
+    ],
+    selectionField: [
+      { position: 20 }
+    ]
+  }
+  VendorId;
+
+  @UI: {
+    lineItem: [
+      { position: 30, importance: #MEDIUM, label: 'PO ID' }
+    ],
+    identification: [
+      { position: 30, label: 'PO ID' }
+    ]
+  }
+  PoId;
+
+  @UI: {
+    lineItem: [
+      { position: 40, importance: #MEDIUM, label: 'Invoice ID' }
+    ],
+    identification: [
+      { position: 40, label: 'Invoice ID' }
+    ]
+  }
+  InvoiceId;
+
+  @UI: {
+    lineItem: [
+      { position: 50, importance: #MEDIUM, label: 'Disruption ID' }
+    ],
+    identification: [
+      { position: 50, label: 'Disruption ID' }
+    ]
+  }
+  DisruptionId;
+
+  @UI: {
+    lineItem: [
+      { position: 60, importance: #HIGH, label: 'Risk Type' }
+    ],
+    identification: [
+      { position: 60, label: 'Risk Type' }
+    ],
+    selectionField: [
+      { position: 30 }
+    ]
+  }
+  RiskType;
+
+  @UI: {
+    lineItem: [
+      { position: 70, importance: #HIGH, label: 'Risk Title' }
+    ],
+    identification: [
+      { position: 70, label: 'Risk Title' }
+    ]
+  }
+  RiskTitle;
+
+  @UI: {
+    lineItem: [
+      { position: 80, importance: #MEDIUM, label: 'Supplier Risk Score' }
+    ],
+    fieldGroup: [
+      { qualifier: 'RiskScores', position: 10 }
+    ]
+  }
+  SupplierRiskScore;
+
+  @UI: {
+    lineItem: [
+      { position: 90, importance: #MEDIUM, label: 'Delivery Risk Score' }
+    ],
+    fieldGroup: [
+      { qualifier: 'RiskScores', position: 20 }
+    ]
+  }
+  DeliveryRiskScore;
+
+  @UI: {
+    lineItem: [
+      { position: 100, importance: #MEDIUM, label: 'Financial Risk Score' }
+    ],
+    fieldGroup: [
+      { qualifier: 'RiskScores', position: 30 }
+    ]
+  }
+  FinancialRiskScore;
+
+  @UI: {
+    lineItem: [
+      { position: 110, importance: #MEDIUM, label: 'Disruption Risk Score' }
+    ],
+    fieldGroup: [
+      { qualifier: 'RiskScores', position: 40 }
+    ]
+  }
+  DisruptionRiskScore;
+
+  @UI: {
+    lineItem: [
+      { position: 120, importance: #HIGH, label: 'Overall Risk Score' }
+    ],
+    identification: [
+      { position: 80, label: 'Overall Risk Score' }
+    ],
+    fieldGroup: [
+      { qualifier: 'RiskScores', position: 50 }
+    ]
+  }
+  OverallRiskScore;
+
+  @UI: {
+    lineItem: [
+      { position: 130, importance: #HIGH, label: 'Risk Level' }
+    ],
+    identification: [
+      { position: 90, label: 'Risk Level' }
+    ],
+    selectionField: [
+      { position: 40 }
+    ]
+  }
+  RiskLevel;
+
+  @UI: {
+    identification: [
+      { position: 100, label: 'Risk Reason' }
+    ],
+    fieldGroup: [
+      { qualifier: 'RiskAIInsights', position: 10 }
+    ]
+  }
+  RiskReason;
+
+  @UI: {
+    identification: [
+      { position: 110, label: 'AI Insight' }
+    ],
+    fieldGroup: [
+      { qualifier: 'RiskAIInsights', position: 20 }
+    ]
+  }
+  AiInsight;
+
+  @UI: {
+    identification: [
+      { position: 120, label: 'Recommended Action' }
+    ],
+    fieldGroup: [
+      { qualifier: 'RiskAIInsights', position: 30 }
+    ]
+  }
+  RecommendedAction;
+
+  @UI: {
+    lineItem: [
+      { position: 140, importance: #HIGH, label: 'Alert Status' }
+    ],
+    identification: [
+      { position: 130, label: 'Alert Status' }
+    ],
+    fieldGroup: [
+      { qualifier: 'RiskReview', position: 10 }
+    ],
+    selectionField: [
+      { position: 50 }
+    ]
+  }
+  AlertStatus;
+
+  @UI: {
+    lineItem: [
+      { position: 150, importance: #HIGH, label: 'Risk Status' }
+    ],
+    identification: [
+      { position: 140, label: 'Risk Status' }
+    ],
+    fieldGroup: [
+      { qualifier: 'RiskReview', position: 20 }
+    ],
+    selectionField: [
+      { position: 60 }
+    ]
+  }
+  RiskStatus;
+
+  @UI: {
+    lineItem: [
+      { position: 160, importance: #MEDIUM, label: 'Review Status' }
+    ],
+    identification: [
+      { position: 150, label: 'Review Status' }
+    ],
+    fieldGroup: [
+      { qualifier: 'RiskReview', position: 30 }
+    ],
+    selectionField: [
+      { position: 70 }
+    ]
+  }
+  ReviewStatus;
+
+  @UI: {
+    identification: [
+      { position: 160, label: 'Review Comment' }
+    ],
+    fieldGroup: [
+      { qualifier: 'RiskReview', position: 40 }
+    ]
+  }
+  ReviewComment;
+
+  @UI.hidden: true
+  LocalCreatedBy;
+
+  @UI.hidden: true
+  LocalCreatedAt;
+
+  @UI.hidden: true
+  LocalLastChangedBy;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+  @UI.hidden: true
+  LastChangedAt;
+}
